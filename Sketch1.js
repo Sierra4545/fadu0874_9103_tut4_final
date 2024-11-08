@@ -40,7 +40,7 @@ function draw() {
   for (let i = 0; i < circles.length; i++) {
     let energy = spectrum[i % spectrum.length];
     let sizeFactor = map(energy, 0, 255, 0.5, 2);
-    circles[i].show(sizeFactor); // Adjust circle size according to frequency energy
+    circles[i].show(sizeFactor,energy); // Adjust circle size according to frequency energy
   }
 }
 
@@ -119,13 +119,14 @@ class Circle {
   }
 
   // Draw vine edges between two points, with a wavy effect
-  drawVineEdge(start, end) {
+  drawVineEdge(start, end, energy) {
     let distance = dist(start.x, start.y, end.x, end.y);
     let steps = floor(distance / 10);
 
     push();
     strokeWeight(vineThickness);
-    stroke(150, 180, 180);  //change vine into gray
+    let vineColor = color(map(energy, 0, 255, 100, 255), random(100, 200), random(100, 200));
+    stroke(vineColor);
     noFill();
 
     beginShape();
@@ -150,11 +151,11 @@ class Circle {
   }
 
   // Draw the hexagon frame with vine edges and pearls at vertices
-  drawHexagonFrame() {
+  drawHexagonFrame(energy) {
     for (let i = 0; i < 8; i++) {
       let start = this.hexagonPoints[i];
       let end = this.hexagonPoints[(i + 1) % 8];
-      this.drawVineEdge(start, end);
+      this.drawVineEdge(start, end, energy);
     }
 
     // Draw pearls at the vertices
@@ -229,8 +230,7 @@ class Circle {
     }
   }
 
-  // Show the circle, drawing all of its components
-  show(sizeFactor) {
+  show(sizeFactor, energy) {
     this.drawBackground();
 
     if (!this.showParticle) {
@@ -259,8 +259,8 @@ class Circle {
       ellipse(this.x, this.y, circle.radius);
     }
 
-    // Draw hexagon frame at the end
-    this.drawHexagonFrame();
+    // Draw hexagon frame at the end,and add energy
+    this.drawHexagonFrame(energy);
   }
 
   // Draw the circle's background
