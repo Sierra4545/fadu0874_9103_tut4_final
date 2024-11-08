@@ -8,19 +8,19 @@
 I used FFT analysis from p5.js to analyze the audio spectrum in real time, driving the size of particles and the colors of the vines accordingly.
 
 ### Animation Properties and Changes
-- **Size Variation**: The size of the particles scales changes because of audio frequency.
-- **Rotation**: The particles rotate around concentric circles.
-- **Uniqueness**: Compared to the works of my team members, the particles rotating around the center and the particles' size changing with the music are unique.
+**Size Variation**: The size of the particles scales changes because of audio frequency.
+**Rotation**: The particles rotate around concentric circles.
+**Uniqueness**: Compared to the works of my team members, the particles rotating around the center and the particles' size changing with the music are unique.
 
 ### Inspiration and References
-- **Source of Inspiration**: I drew inspiration from the works of Robert Delaunay and Wassily Kandinsky. Wassily Kandinsky was a Russian painter. He is a pioneers of abstraction in western art. Robert Delaunay was a French artist. They draw abstract circles. And the nested circles in their art evoke a sense of movement and floating rotation. And I thought about a kaleidoscope. I aimed to create a kaleidoscopic wheels with elements rotating. In the circle the particles is growing.As for music I chose a wind chime music.
+**Source of Inspiration**: I drew inspiration from the works of Robert Delaunay and Wassily Kandinsky. Wassily Kandinsky was a Russian painter. He is a pioneers of abstraction in western art. Robert Delaunay was a French artist. They draw abstract circles. And the nested circles in their art evoke a sense of movement and floating rotation. And I thought about a kaleidoscope. I aimed to create a kaleidoscopic wheels with elements rotating. In the circle the particles is growing.As for music I chose a wind chime music.
   
   ![Rythme n°2, 1938 by Robert Delaunay](/assets/Rythme%20n°2.png)
   ![Several Circles,1926 by Wassily Kandinsky](/assets/1926.png)
   ![Farbstudie Quadrate, 1913 by Wassily Kandinsky](/assets/Color%20study.png)
 
 ## Technical Details and Explanations
-- **p5.js Animation Generation**: Using p5.FFT to analyze audio signals, I converted the spectrum data into visual attributes for the animation. The `fft.analyze()` function is used to retrieve real-time spectrum information.
-- **Spectrum-Driven Animation**: With the spectrum data provided by p5.FFT, I mapped the frequency energy values to various visual attributes, such as particle size and vine color. Using the `map()` function, the spectrum energy (0-255) was mapped to a suitable range for the animation effects. The spectrum data was used to adjust the size of each Particle. The `show(sizeFactor)` method takes in a size factor that determines the size of each Particle. The value of `sizeFactor` depends on the audio energy of each frequency band, making the Particles react to the rhythm of the audio.
-- **Other**: In the `mousePressed()` function, I implemented a mouse click to control the playback and pause state of the audio, which in turn controls whether the animation continues to render. I also modified the particle rotation so that they rotate around concentric circles, giving the animation a more fluid feel.
-- **External Tools and References**: In this project, I referred to the official p5.js documentation and some community tutorials, especially for combining audio spectrum analysis with animation. These tutorials helped me understand how to use FFT to obtain real-time audio information and apply it to animation effects. Additionally, some ideas regarding particle systems and color mapping were inspired by online tutorials.
+**p5.js Animation Generation**: Using p5.FFT to analyze audio signals, I converted the spectrum data into visual attributes for the animation. The `fft.analyze()` function is used to retrieve real-time spectrum information.
+**Spectrum-Driven Animation**: With the spectrum data provided by p5.FFT, I mapped the frequency energy values to various visual attributes, such as particle size and vine color. Using the `map()` function, the spectrum energy (0-255) was mapped to a suitable range for the animation effects. The spectrum data was used to adjust the size of each Particle. The `show(sizeFactor)` method takes in a size factor that determines the size of each Particle. The value of `sizeFactor` depends on the audio energy of each frequency band, making the Particles react to the rhythm of the audio.
+**Other**: In the `mousePressed()` function, I implemented a mouse click to control the playback and pause state of the audio, which in turn controls whether the animation continues to render. I also modified the particle rotation so that they rotate around concentric circles, giving the animation a more fluid feel.
+**External Tools and References**: In this project, I referred to the official p5.js documentation and some community tutorials, especially for combining audio spectrum analysis with animation. These tutorials helped me understand how to use FFT to obtain real-time audio information and apply it to animation effects. Additionally, some ideas regarding particle systems and color mapping were inspired by online tutorials.
