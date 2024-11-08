@@ -125,7 +125,7 @@ class Circle {
 
     push();
     strokeWeight(vineThickness);
-    stroke(random(100, 255), random(100, 200), random(100, 200));
+    stroke(150, 180, 180);  //change vine into gray
     noFill();
 
     beginShape();
@@ -203,18 +203,15 @@ class Circle {
       let layerRadius = (this.radius / numLayers) * (layer + 1);
 
       for (let i = 0; i < particlesPerLayer; i++) {
-        let angle = (TWO_PI / particlesPerLayer) * i + random(-0.05, 0.05);
-        let dist = layerRadius + random(-2, 0);
+        let angle = (TWO_PI / particlesPerLayer) * i;
+        let dist = layerRadius;
         let size = map(layer, 0, numLayers - 1, 4, 12) * random(0.8, 1.2);
 
-        let px = this.x + cos(angle) * dist;
-        let py = this.y + sin(angle) * dist;
-
-        this.particles.push(new Particle(px, py, layerColor, size));
+        this.particles.push(new Particle(this.x, this.y, angle, dist, layerColor, size));
       }
     }
   }
-
+  
   // Initialize rays originating from the circle
   initRays() {
     let numRays = 60;
@@ -276,18 +273,23 @@ class Circle {
 
 // Particle class defines each particle
 class Particle {
-  constructor(x, y, col, size) {
-    this.x = x + random(-0.5, 0.5);
-    this.y = y + random(-0.5, 0.5);
+  constructor(cx, cy, angle, dist, col, size) {
+    this.cx = cx;
+    this.cy = cy;
+    this.angle = angle;
+    this.dist = dist;
     this.col = col;
     this.size = size;
   }
-
-  // Display the particle with the size affected by sizeFactor
+  // Display the particle with the size affected by sizeFactor and rotates
   show(sizeFactor) {
+    this.angle += 0.01; // Particle rotates over time
+    let px = this.cx + cos(this.angle) * this.dist;
+    let py = this.cy + sin(this.angle) * this.dist;
+
     fill(this.col);
     noStroke();
-    ellipse(this.x, this.y, this.size * sizeFactor, this.size * sizeFactor);
+    ellipse(px, py, this.size * sizeFactor, this.size * sizeFactor);
   }
 }
 
